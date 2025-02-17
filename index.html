@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/toastr.min.css">
+
+</head>
+
+<body>
+<div id="crudPersona">
+    <div class="container" >
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Listado de Personas</h1>
+                <div class="d-flex justify-content-end">
+                    <button  type="button" class="btn btn-success" id="boton" data-bs-toggle="modal" data-bs-target="#modalCrearPersona" @click="LimpiarObjeto()"> Agregar</button>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Sueldo</th>
+                        <th scope="col">Correo</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="persona in personas">
+                        <th scope="row">{{persona.id}}</th>
+                        <td>{{persona.nombre}}</td>
+                        <td>{{persona.apellidos}}</td>
+                        <td>{{persona.sueldo}}</td>
+                        <td>{{persona.email}}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" @click="Editar(persona)">Editar</button>
+                            <button type="button" class="btn btn-danger"@click="Eliminar(persona.id)">Eliminar</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalCrearPersona" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form METHOD="post" @submit.prevent="Grabar">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Grabar Nueva Persona</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label for="nombre" class="col-form-label">Nombres</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" v-model="this.fillPersona.nombre">
+                            </div>
+                            <div class="mb-3">
+                                <label for="apellidos" class="col-form-label">Apellidos</label>
+                                <input type="text" class="form-control" id="apellidos" name="apellidos" v-model="this.fillPersona.apellidos">
+                            </div>
+                            <div class="mb-3">
+                                <label for="sueldo" class="col-form-label">Sueldo</label>
+                                <input type="number" class="form-control" id="sueldo" name="sueldo" min="2000" v-model="this.fillPersona.sueldo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="col-form-label">Email</label>
+                                <input type="text" class="form-control" id="email" name="email" v-model="this.fillPersona.email">
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Grabar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="css/bootstrap.bundle.min.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/vue.global.js"></script>
+<script src="js/axios.js"></script>
+<script src="js/main.js"></script>
+</html>
