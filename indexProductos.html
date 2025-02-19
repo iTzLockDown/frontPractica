@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/toastr.min.css">
+
+</head>
+
+<body>
+<div id="crudProductos">
+    <div class="container" >
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Productos</h1>
+                <div class="d-flex justify-content-end">
+                    <button  type="button" class="btn btn-success" id="boton" data-bs-toggle="modal" data-bs-target="#modalCrearProducto" @click="LimpiarObjeto()"> Agregar</button>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Stock Disponible</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="producto in productos">
+                        <th scope="row">{{producto.id}}</th>
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td>{{producto.stock}}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" @click="Editar(producto)">Editar</button>
+                            <button type="button" class="btn btn-danger"@click="Eliminar(producto.id)">Eliminar</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div class="modal fade" id="modalCrearProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form METHOD="post" @submit.prevent="Grabar">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Grabar Nuevo Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label for="nombre" class="col-form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" v-model="this.fillProducto.nombre">
+                            </div>
+                            <div class="mb-3">
+                                <label for="precio" class="col-form-label">Precio</label>
+                                <input type="number" class="form-control" id="precio" name="precio" v-model="this.fillProducto.precio">
+                            </div>
+                            <div class="mb-3">
+                                <label for="stock" class="col-form-label">Stock</label>
+                                <input type="number" class="form-control" id="stock" name="stock" v-model="this.fillProducto.stock">
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Grabar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="css/bootstrap.bundle.min.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/vue.global.js"></script>
+<script src="js/axios.js"></script>
+<script src="js/main.js"></script>
+</html>
