@@ -32,7 +32,7 @@
                         <th scope="row">{{producto.id}}</th>
                         <td>{{producto.nombre}}</td>
                         <td>{{producto.precio}}</td>
-                        <td>{{producto.stock}}</td>
+                        <td>{{producto.cantStock}}</td>
                         <td>
                             <button type="button" class="btn btn-info" @click="Editar(producto)">Editar</button>
                             <button type="button" class="btn btn-danger"@click="Eliminar(producto.id)">Eliminar</button>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="stock" class="col-form-label">Stock</label>
-                                <input type="number" class="form-control" id="stock" name="stock" v-model="this.fillProducto.stock">
+                                <input type="number" class="form-control" id="stock" name="stock" v-model="this.fillProducto.cantStock">
                             </div>
 
                     </div>

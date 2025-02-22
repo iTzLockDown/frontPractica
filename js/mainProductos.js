@@ -6,7 +6,7 @@ const app = Vue.createApp({
                 id:'',
                 nombre: '',
                 precio: '',
-                stock: '',
+                cantStock: '',
             }
         };
     },
@@ -40,7 +40,7 @@ const app = Vue.createApp({
             axios.post(url,{
                 nombre : this.fillProducto.nombre,
                 precio : this.fillProducto.precio,
-                stock : this.fillProducto.stock
+                cantStock : this.fillProducto.cantStock
             }).
             then(response => {
                 if(response){
@@ -62,7 +62,7 @@ const app = Vue.createApp({
             this.fillProducto.id = producto.id;
             this.fillProducto.nombre = producto.nombre;
             this.fillProducto.precio = producto.precio;
-            this.fillProducto.stock = producto.stock;
+            this.fillProducto.cantStock = producto.cantStock;
         },
 
         EditarPut(){
@@ -71,7 +71,7 @@ const app = Vue.createApp({
                 id: this.fillProducto.id,
                 nombre : this.fillProducto.nombre,
                 precio : this.fillProducto.precio,
-                stock : this.fillProducto.stock
+                cantStock : this.fillProducto.cantStock
             }).then(response => {
                 if(response){
                     toastr.info('Registro editado correctamente.');
@@ -101,7 +101,7 @@ const app = Vue.createApp({
             this.fillProducto.id = '';
             this.fillProducto.nombre = '';
             this.fillProducto.precio = '';
-            this.fillProducto.stock = '';
+            this.fillProducto.cantStock = '';
         }
     },
     created() {
