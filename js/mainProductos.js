@@ -143,7 +143,7 @@ const app = Vue.createApp({
                 return;
             }
 
-            var url = `https://localhost:44346/api/Values/Vender?id=${id}&cantidad=${cantidad}`;
+            var url = `localhost:44346/api/Values/Venta?id=${id}&cantStock=${cantidad}`;
             axios.put(url, { id: id, cantidad: cantidad })
                 .then(response => {
                     if (response) {
