@@ -168,6 +168,8 @@ const app = Vue.createApp({
             
             console.log(this.fillProducto);
             $("#modalActualizarStock").modal("show");  
+
+            hola
         
         }
     },
