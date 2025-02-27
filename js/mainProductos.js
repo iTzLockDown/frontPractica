@@ -115,8 +115,8 @@ const app = Vue.createApp({
         },
 
         ActualizarStockPut() {
-            console.log(this.fillProducto); 
-            var url = "https://localhost:44346/api/Values/AgregarStock?id=" + this.fillProducto.id + "&cantStock=" + this.fillProducto.cantStock;
+            var url = "https://localhost:44346/api/Values/ActualizarStock?id=" + this.fillProducto.id + "&cantStock=" + this.fillProducto.cantStock;
+  
             axios.put(url, {
                 id: this.fillProducto.id,
                 cantStock: this.fillProducto.cantStock
@@ -137,13 +137,19 @@ const app = Vue.createApp({
         },
 
         Venta(id, cantidad) {
-            if (cantidad <= 0) {
+            console.log(this.fillProducto.cantStock)
+            if (this.fillProducto.cantStock <= 0) {
                 toastr.error("La cantidad debe ser mayor a 0.");
                 return;
             }
+            var url = `https://localhost:44346/api/Values/Venta?id=${id.id}&cantStock=${id.cantStock}`;
 
-            var url = `localhost:44346/api/Values/Venta?id=${id}&cantStock=${cantidad}`;
-            axios.put(url, { id: id, cantidad: cantidad })
+
+            axios.put(url, 
+                { 
+                    id: this.fillProducto.id, 
+                    cantStock: this.fillProducto.cantStock 
+                })
                 .then(response => {
                     if (response) {
                         toastr.success('Venta realizada correctamente.');
@@ -168,9 +174,6 @@ const app = Vue.createApp({
             
             console.log(this.fillProducto);
             $("#modalActualizarStock").modal("show");  
-
-            hola
-        
         }
     },
 

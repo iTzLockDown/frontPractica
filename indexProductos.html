@@ -35,15 +35,15 @@
                         <td>{{producto.cantStock}}</td>
                         <td>
                             <button type="button" class="btn btn-info" @click="Editar(producto)">Editar</button>
-    <button type="button" class="btn btn-danger" @click="Eliminar(producto.id)">Eliminar</button>
-    <button type="button" class="btn btn-dark" @click="MostrarProductoParaEditarStock(producto)">
-        Actualizar
-    </button>
-    <button type="button" class="btn btn-warning"
-            data-bs-toggle="modal" data-bs-target="#modalVenta"
-            @click="fillProducto = { ...producto }">
-        Vender
-    </button>
+                            <button type="button" class="btn btn-danger" @click="Eliminar(producto.id)">Eliminar</button>
+                            <button type="button" class="btn btn-dark" @click="MostrarProductoParaEditarStock(producto)">
+                                Actualizar
+                            </button>
+                            <button type="button" class="btn btn-warning"
+                                    data-bs-toggle="modal" data-bs-target="#modalVenta"
+                                    @click="fillProducto = { ...producto }">
+                                Vender
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -87,53 +87,64 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade" id="modalActualizarStock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form METHOD="post" @submit.prevent="Actualizar(fillProducto)">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1">Actualizar Stock {{this.fillProducto.nombre}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-        <div class="mb-3">
-            <label for="stock" class="col-form-label">Ingrese el stock</label>
-            <input type="text" class="form-control" id="stock" v-model="this.fillProducto.nombre">
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-    </div>
-</form>
 
 
-
-<div class="modal fade" id="modalVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form METHOD="post" @submit.prevent="Venta(fillProducto)">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel2">Venta</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="cantidadVenta" class="col-form-label">Ingrese la cantidad de productos a comprar</label>
-                        <input type="number" class="form-control" id="cantidadVenta" v-model="fillProducto.cantStock">
+    <div class="modal fade" id="modalActualizarStock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form METHOD="post" @submit.prevent="ActualizarStockPut()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Actualizar Stock {{this.fillProducto.nombre}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Comprar</button>
-                </div>
-            </form>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="stock" class="col-form-label">Ingrese el stock</label>
+                            <input type="number" class="form-control" id="stock" v-model="this.fillProducto.cantStock">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+    
+    
+    <div class="modal fade" id="modalVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form METHOD="post" @submit.prevent="Venta(fillProducto)">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel2">Venta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="cantidadVenta" class="col-form-label">Ingrese la cantidad de productos a comprar de: {{fillProducto.name}}</label>
+                            <input type="number" class="form-control" id="cantidadVenta" v-model="fillProducto.cantStock">
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="cantidadVenta" class="col-form-label">precio</label>
+                            <input type="number" class="form-control" id="cantidadVenta" v-model="fillProducto.precio">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Comprar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
 </div>
-</div>
+
+
 
 </body>
 <script src="js/jquery-3.7.1.min.js"></script>
