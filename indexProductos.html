@@ -36,9 +36,7 @@
                         <td>
                             <button type="button" class="btn btn-info" @click="Editar(producto)">Editar</button>
     <button type="button" class="btn btn-danger" @click="Eliminar(producto.id)">Eliminar</button>
-    <button type="button" class="btn btn-dark"
-            data-bs-toggle="modal" data-bs-target="#modalActualizarStock"
-            @click="fillProducto = { ...producto }">
+    <button type="button" class="btn btn-dark" @click="MostrarProductoParaEditarStock(producto)">
         Actualizar
     </button>
     <button type="button" class="btn btn-warning"
@@ -96,13 +94,13 @@
         <div class="modal-content">
             <form METHOD="post" @submit.prevent="Actualizar(fillProducto)">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1">Actualizar Stock</h5>
+        <h5 class="modal-title" id="exampleModalLabel1">Actualizar Stock {{this.fillProducto.nombre}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
         <div class="mb-3">
             <label for="stock" class="col-form-label">Ingrese el stock</label>
-            <input type="number" class="form-control" id="stock" v-model="fillProducto.cantStock">
+            <input type="text" class="form-control" id="stock" v-model="this.fillProducto.nombre">
         </div>
     </div>
     <div class="modal-footer">
@@ -110,10 +108,8 @@
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </div>
 </form>
-        </div>
-    </div>
-</div>
-</div>
+
+
 
 <div class="modal fade" id="modalVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -146,6 +142,5 @@
 <script src="js/toastr.min.js"></script>
 <script src="js/vue.global.js"></script>
 <script src="js/axios.js"></script>
-<script src="js/main.js"></script>
 <script src="js/mainProductos.js"></script>
 </html>

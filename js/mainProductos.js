@@ -125,9 +125,8 @@ const app = Vue.createApp({
                     if (response) {
                         toastr.info('Stock actualizado correctamente.');
                         this.Listar();
-                        setTimeout(() => {
-                            $("#modalActualizarStock").modal("hide");
-                        }, 500); 
+                        $("#modalActualizarStock").modal("hide");
+                        
                     }
                 })
                 .catch(error => {
@@ -160,7 +159,19 @@ const app = Vue.createApp({
                 });
             this.LimpiarObjeto();
         },
+
+        MostrarProductoParaEditarStock(producto){
+            this.fillProducto.id = producto.id;
+            this.fillProducto.nombre = producto.nombre;
+            this.fillProducto.precio = producto.precio;
+            this.fillProducto.cantStock = producto.cantStock;
+            
+            console.log(this.fillProducto);
+            $("#modalActualizarStock").modal("show");  
+        
+        }
     },
+
 
     created() {
         this.Listar();
